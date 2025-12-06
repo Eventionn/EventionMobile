@@ -55,6 +55,7 @@ import com.example.evention.ui.components.auth.AuthGoogle
 import com.example.evention.ui.theme.EventionTheme
 import kotlinx.coroutines.delay
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.zIndex
 import com.example.evention.ui.screens.auth.login.signInWithGoogle
 import com.example.evention.ui.screens.event.create.CreateEventState
@@ -168,7 +169,8 @@ fun RegisterScreen(navController: NavController) {
                         Text(
                             text = messageText.value,
                             color = Color.White,
-                            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)
+                            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
+                            modifier = Modifier.testTag("register_error_message")
                         )
                     }
                 }
@@ -211,6 +213,7 @@ fun RegisterScreen(navController: NavController) {
                 value = username,
                 password = false,
                 onValueChange = { username = it }
+
             )
 
             Spacer(modifier = Modifier.height(22.dp))
@@ -251,7 +254,9 @@ fun RegisterScreen(navController: NavController) {
                 onClick = {
                     viewModel.resetState()
                     viewModel.register(username, email, password, confirmpassword)
-                }
+                },
+                modifier = Modifier.testTag("register")
+
             )
 
             Spacer(modifier = Modifier.height(40.dp))
@@ -284,7 +289,7 @@ fun RegisterScreen(navController: NavController) {
                     fontSize = 15.sp
                 )
                 Text(
-                    text = " Sign in",
+                    text = "Sign in",
                     modifier = Modifier.clickable { navController.navigate("signIn") },
                     color = Color(0xFF5669FF),
                     style = MaterialTheme.typography.titleMedium,

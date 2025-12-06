@@ -25,6 +25,16 @@
                 return
             }
 
+            if (!email.contains("@")) {
+                _registerState.value = RegisterState.Error("Email inválido")
+                return
+            }
+
+            if (password.length < 8) {
+                _registerState.value = RegisterState.Error("A password deve ter pelo menos 8 caracteres")
+                return
+            }
+
             if (password != confirmPassword) {
                 _registerState.value = RegisterState.Error("Passwords do not match")
                 return

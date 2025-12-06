@@ -278,7 +278,7 @@ fun LoginScreen(navController: NavController) {
                 fontSize = 15.sp
             )
             Text(
-                text = " Sign up",
+                text = "Sign up",
                 modifier = Modifier.clickable { navController.navigate("signUp") },
                 color = EventionBlue,
                 style = MaterialTheme.typography.titleMedium,
