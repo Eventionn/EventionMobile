@@ -124,7 +124,8 @@ fun HomeScreen(events: List<Event>, navController: NavController, modifier: Modi
                         Text(
                             text = "Upcoming Events",
                             style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.testTag("upcomingField")
                         )
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
