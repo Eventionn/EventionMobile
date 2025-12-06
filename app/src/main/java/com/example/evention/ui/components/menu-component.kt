@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.annotation.DrawableRes
+import androidx.compose.ui.platform.testTag
 import androidx.navigation.NavController
 import com.example.evention.R
 import com.example.evention.ui.theme.EventionBlue
@@ -42,6 +43,7 @@ fun MenuComponent(
                 name = name,
                 iconRes = if (currentPage == name) iconFilled else icon,
                 currentPage = currentPage,
+                modifier = Modifier.testTag("menu_$name"),
                 onClick = {
                     val route = when (name) {
                         "Home" -> "home"
@@ -64,6 +66,7 @@ fun MenuItem(
     name: String,
     @DrawableRes iconRes: Int,
     currentPage: String,
+    modifier: Modifier = Modifier,
     onClick: (String) -> Unit
 ) {
     val isSelected = name == currentPage
@@ -71,7 +74,7 @@ fun MenuItem(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .clickable { onClick(name) }
     ) {
         Image(
