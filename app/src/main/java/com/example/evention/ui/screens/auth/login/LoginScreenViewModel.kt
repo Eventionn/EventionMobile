@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.firestore
+//import com.google.firebase.Firebase
+//import com.google.firebase.firestore.FieldValue
+//import com.google.firebase.firestore.firestore
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.tasks.await
 
@@ -42,16 +42,16 @@ class LoginScreenViewModel(
                     userPreferences.saveUserId(userGuid)
                     userPreferences.saveUserType(userType)
 
-                    val fcmToken = FirebaseMessaging.getInstance().token.await()
+//                    val fcmToken = FirebaseMessaging.getInstance().token.await()
 
-                    Firebase.firestore.collection("evention")
-                        .document(userGuid)
-                        .set(
-                            mapOf(
-                                "fcmToken" to fcmToken,
-                                "updatedAt" to FieldValue.serverTimestamp()
-                            )
-                        ).await()
+//                    Firebase.firestore.collection("evention")
+//                        .document(userGuid)
+//                        .set(
+//                            mapOf(
+//                                "fcmToken" to fcmToken,
+//                                "updatedAt" to FieldValue.serverTimestamp()
+//                            )
+//                        ).await()
 
                     loginState = LoginState.Success(response)
                 } else {

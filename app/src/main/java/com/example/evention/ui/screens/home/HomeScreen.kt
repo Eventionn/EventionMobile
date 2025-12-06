@@ -43,6 +43,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -123,7 +124,8 @@ fun HomeScreen(events: List<Event>, navController: NavController, modifier: Modi
                         Text(
                             text = "Upcoming Events",
                             style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.testTag("upcomingField"),
                         )
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
