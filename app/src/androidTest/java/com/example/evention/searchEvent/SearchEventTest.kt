@@ -47,10 +47,8 @@ class SearchEventTest {
     // Função auxiliar para aceitar permissão do sistema
     private fun grantSystemPermission() {
         try {
-            // Dá um tempo para o dialog aparecer
             Thread.sleep(1000)
 
-            // Procura pelos botões do sistema de permissão
             val allowButton = device.findObject(
                 UiSelector().textMatches("(?i)allow|permitir|aceitar|permitir sempre")
             )
@@ -58,7 +56,6 @@ class SearchEventTest {
             if (allowButton.exists()) {
                 allowButton.click()
             } else {
-                // Tenta encontrar por resource ID (pode variar por versão do Android)
                 val allowById = device.findObject(
                     UiSelector().resourceIdMatches(".*permission_allow.*")
                 )
@@ -67,7 +64,6 @@ class SearchEventTest {
                 }
             }
         } catch (e: Exception) {
-            // Log ou continue o teste
             println("Permissão automática não pôde ser concedida: ${e.message}")
         }
     }
@@ -96,11 +92,6 @@ class SearchEventTest {
         }
     }
 
-
-    /**
-     * TC3.1 - Teste da pesquisa por nome de evento
-     * Pré-requisito: Fazer Login (assumindo que MainActivity já abre Home após login simulado)
-     */
     @Test
     fun testSearchEventByName() {
         setNavHost("home")
@@ -119,16 +110,13 @@ class SearchEventTest {
             .get(0)
             .performClick()
 
-        // Espera a UI atualizar
         composeTestRule.waitForIdle()
 
-        // Agora verifica se algum card contém o texto do evento
         composeTestRule.onAllNodesWithTag("event_card")
             .assertAny(hasText(eventName))
     }
 
 
-    // Teste aceitando permissão
     @Test
     fun testSearchByUserLocation_acceptPermission() {
         composeTestRule.setContent {
@@ -150,7 +138,6 @@ class SearchEventTest {
 
     }
 
-    // Teste recusando permissão
     @Test
     fun testSearchByUserLocation_denyPermission() {
         composeTestRule.setContent {

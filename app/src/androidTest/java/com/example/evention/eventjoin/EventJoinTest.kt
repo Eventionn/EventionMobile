@@ -104,20 +104,18 @@ class EventJoinPaidTest {
                 .fetchSemanticsNodes()
                 .isNotEmpty()
         }
-//
-        // Inserir email do PayPal
+
        composeRule.onNodeWithText("PayPal Email", ignoreCase = true)
             .assertIsDisplayed()
             .performTextInput(paypalEmail)
-//
-        // Verificar que o email foi inserido
+
         composeRule.onNodeWithText(paypalEmail)
             .assertIsDisplayed()
-//
-//        // Passo 6: Clicar no botão Pay
+
         composeRule.onNodeWithText("PAY")
             .assertIsDisplayed()
             .performClick()
+
 
     }
 }
