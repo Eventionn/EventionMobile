@@ -63,6 +63,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -77,6 +78,7 @@ import com.example.evention.utils.isNetworkAvailable
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -340,19 +342,37 @@ fun CreateEventScreen(navController: NavController) {
                             val description = eventDescription.value
                             val priceString = eventPrice.value.replace("€", "").trim()
                             val price = priceString.toDoubleOrNull()
-                            val start = selectedStartDate.value
-                            val end = selectedEndDate.value
-                            val location = selectedLocation.value
+
+                            val calendar = Calendar.getInstance().apply {
+                                set(Calendar.YEAR, 2025)
+                                set(Calendar.MONTH, 11)
+                                set(Calendar.DAY_OF_MONTH, 1)
+                                set(Calendar.HOUR_OF_DAY, 10)
+                                set(Calendar.MINUTE, 0)
+                                set(Calendar.SECOND, 0)
+                                set(Calendar.MILLISECOND, 0)
+                            }
+                            val startDate: Date = calendar.time
+                            calendar.set(Calendar.HOUR_OF_DAY, 18)
+                            val endDate: Date = calendar.time
+
+                            val start = startDate
+                            val end = endDate
+                            val location = LatLng(38.7169, -9.1399)
 
                             if (name.isNotBlank() && description.isNotBlank() && start != null && end != null && location != null && price != null) {
                                 viewModel.createEvent(name, description, start, end, price, location, context)
                             } else {
-                                Toast.makeText(context, "Incorrect fields", Toast.LENGTH_SHORT).show()
+                                messageText.value = "Incorrect fields"
+                                isSuccessMessage.value = false
+                                showMessage.value = true
                             }
+
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(48.dp),
+                            .height(48.dp)
+                            .testTag("createEventButton"),
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = EventionBlue)
                     ) {
