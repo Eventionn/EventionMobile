@@ -99,10 +99,6 @@ class EventJoinPaidTest {
             .assertIsDisplayed()
             .performClick()
 
-//        // Verificar que mostra o preço do evento
-//        composeRule.onNodeWithText("€", ignoreCase = false)
-//            .assertIsDisplayed()
-//
         composeRule.onNodeWithText("PayPal", ignoreCase = true)
             .assertIsDisplayed()
 //
@@ -119,33 +115,6 @@ class EventJoinPaidTest {
         composeRule.onNodeWithText("PAY")
             .assertIsDisplayed()
             .performClick()
-//
-//        // Verificar notificação de sucesso
-        composeRule.waitUntil(5000) {
-            composeRule.onAllNodesWithText("sucesso", substring = true, ignoreCase = true)
-                .fetchSemanticsNodes().isNotEmpty() ||
-                    composeRule.onAllNodesWithText("success", substring = true, ignoreCase = true)
-                        .fetchSemanticsNodes().isNotEmpty()
-        }
-//
-//        composeRule.onNodeWithTag("TicketsTab") // Assumindo que o botão Tickets tem esta tag
-//            .assertIsDisplayed()
-//            .performClick()
-//
-//        composeRule.onNodeWithText("Tickets", ignoreCase = true)
-//            .assertIsDisplayed()
-//            .performClick()
-//
-//        composeRule.onNodeWithTag("TicketsScreen")
-//            .assertIsDisplayed()
-//
-//        composeRule.waitUntil(3000) {
-//            composeRule.onAllNodesWithText(eventName, ignoreCase = true)
-//                .fetchSemanticsNodes().isNotEmpty()
-//        }
-//
-//        composeRule.onNodeWithText(eventName, ignoreCase = true)
-//            .assertIsDisplayed()
-//            .assertIsEnabled()
+
     }
 }

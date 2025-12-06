@@ -37,7 +37,7 @@ fun HomeSearch(searchQuery: String, onSearchChange: (String) -> Unit, navControl
                 color = Color(0xFF0081FF),
                 shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp)
             )
-            .padding(horizontal = 25.dp, vertical = 18.dp)
+            .padding(horizontal = 25.dp, vertical = 18.dp).testTag("EventCardItem")
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -45,7 +45,7 @@ fun HomeSearch(searchQuery: String, onSearchChange: (String) -> Unit, navControl
         ) {
             Icon(
                 imageVector = Icons.Filled.Search,
-                contentDescription = "Search",
+                contentDescription = "Search Button",
                 tint = Color.White,
                 modifier = Modifier.size(28.dp)
             )

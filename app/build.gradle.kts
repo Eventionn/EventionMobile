@@ -87,6 +87,7 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.6.1")
     androidTestImplementation("androidx.test:runner:1.6.1")
     androidTestImplementation("org.mockito:mockito-android:5.6.0")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
 
     // Compose UI testing
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -114,6 +115,7 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
     implementation("com.google.firebase:firebase-auth-ktx")
+
 
     // QRCode
     implementation("com.google.zxing:core:3.5.1")

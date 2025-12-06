@@ -1,4 +1,4 @@
-package com.example.evention
+package com.example.evention.register
 
 import UserPreferences
 import android.content.Context

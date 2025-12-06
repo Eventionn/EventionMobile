@@ -67,6 +67,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.testTag
 import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -146,6 +147,7 @@ fun SearchScreen(events: List<Event>, modifier: Modifier = Modifier, navControll
                         .fillMaxWidth()
                         .weight(1.3f)
                         .background(Color.Gray)
+                        .testTag("GoogleMap"),
                 ) {
                     GoogleMap(
                         modifier = Modifier.fillMaxSize(),
@@ -227,8 +229,9 @@ fun SearchScreen(events: List<Event>, modifier: Modifier = Modifier, navControll
                         }) {
                             Icon(
                                 imageVector = Icons.Outlined.LocationOn,
-                                contentDescription = "Search",
-                                tint = Color.Gray
+                                contentDescription = "My Location Button",
+                                tint = Color.Gray,
+                                modifier = Modifier.testTag("find_search")
                             )
                         }
                     }
