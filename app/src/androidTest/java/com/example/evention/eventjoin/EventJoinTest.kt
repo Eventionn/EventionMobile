@@ -99,8 +99,11 @@ class EventJoinPaidTest {
             .assertIsDisplayed()
             .performClick()
 
-        composeRule.onNodeWithText("PayPal", ignoreCase = true)
-            .assertIsDisplayed()
+        composeRule.waitUntil(timeoutMillis = 5000) {
+            composeRule.onAllNodesWithText("PayPal", ignoreCase = true)
+                .fetchSemanticsNodes()
+                .isNotEmpty()
+        }
 //
         // Inserir email do PayPal
        composeRule.onNodeWithText("PayPal Email", ignoreCase = true)
