@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -101,9 +102,9 @@ fun LoginScreen(navController: NavController) {
     LaunchedEffect(loginState) {
         when (loginState) {
             is LoginScreenViewModel.LoginState.Success -> {
-                if (!userPreferences.isNotificationPermissionShown()) {
-                    showNotificationPermission = true
-                }
+//                if (!userPreferences.isNotificationPermissionShown()) {
+//                    showNotificationPermission = true
+//                }
                 errorMessage = null
                 delay(500)
                 viewModel.resetState()
@@ -159,6 +160,7 @@ fun LoginScreen(navController: NavController) {
             iconResId = R.drawable.mail,
             value = email,
             password = false,
+            modifier = Modifier.testTag("emailField"),
             onValueChange = {
                 email = it
                 errorMessage = null
@@ -172,6 +174,7 @@ fun LoginScreen(navController: NavController) {
             iconResId = R.drawable.lock,
             value = password,
             password = true,
+            modifier = Modifier.testTag("passwordField"),
             onValueChange = {
                 password = it
                 errorMessage = null
@@ -241,11 +244,23 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(40.dp))
 
         AuthConfirmButton(
+            modifier = Modifier.testTag("loginButton"),
             text = "Sign in",
             state = buttonState,
             onClick = {
-                viewModel.resetState()
-                viewModel.login(email, password)
+                when {
+                    email.isBlank() || password.isBlank() -> {
+                        errorMessage = "Campos obrigatórios"
+                    }
+                    password.length < 8 -> {
+                        errorMessage = "A password deve ter pelo menos 8 caracteres"
+                    }
+                    else -> {
+                        errorMessage = null
+                        viewModel.resetState()
+                        viewModel.login(email, password)
+                    }
+                }
             }
         )
 
