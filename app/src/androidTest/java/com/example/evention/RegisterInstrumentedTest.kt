@@ -58,10 +58,10 @@ class RegisterScreenTests {
             .performClick()
 
         composeRule.onNodeWithText("Full Name")
-            .performTextInput("John Doe")
+            .performTextInput("utilizador1")
 
         composeRule.onNodeWithText("abc@email.com")
-            .performTextInput("johnemail.com")
+            .performTextInput("utilizador1gmail.com")
 
         composeRule.onNodeWithText("Your Password")
             .performTextInput("12345678")
@@ -82,16 +82,16 @@ class RegisterScreenTests {
         setNavHost("signUp")
 
         composeRule.onNodeWithText("Full Name")
-            .performTextInput("John Doe")
+            .performTextInput("utilizador1")
 
         composeRule.onNodeWithText("abc@email.com")
-            .performTextInput("john@email.com")
+            .performTextInput("utilizador1@gmail.com")
 
         composeRule.onNodeWithText("Your Password")
-            .performTextInput("123456")
+            .performTextInput("utili")
 
         composeRule.onNodeWithText("Confirm Password")
-            .performTextInput("123456")
+            .performTextInput("utili")
 
         composeRule.onNodeWithTag("register")
             .performClick()
