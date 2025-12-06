@@ -43,6 +43,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -184,7 +185,8 @@ fun HomeScreen(events: List<Event>, navController: NavController, modifier: Modi
                             event = event,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 25.dp, vertical = 8.dp),
+                                .padding(horizontal = 25.dp, vertical = 8.dp)
+                                .testTag("EventCardItem"),
                             navController = navController
                         )
                     }

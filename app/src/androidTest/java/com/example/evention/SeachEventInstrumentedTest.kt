@@ -2,24 +2,24 @@ package com.example.evention
 
 import UserPreferences
 import android.content.Context
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.evention.di.NetworkModule
-import com.example.evention.ui.screens.auth.register.RegisterScreen
 import com.example.evention.ui.screens.home.HomeScreen
 import com.example.evention.ui.theme.EventionTheme
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.platform.app.InstrumentationRegistry
-import com.example.evention.ui.screens.auth.login.LoginScreen
+import com.example.evention.ui.screens.home.HomeScreenViewModel
 
 @RunWith(AndroidJUnit4::class)
 class HomeScreenTest {
@@ -50,12 +50,20 @@ class HomeScreenTest {
         composeTestRule.setContent {
             EventionTheme {
                 val navController = rememberNavController()
+
                 NavHost(navController = navController, startDestination = startDestination) {
-                    composable("home") { HomeScreen(navController) }
+
+                    composable("home") {
+                        val viewModel: HomeScreenViewModel = viewModel()
+                        val events by viewModel.events.collectAsState()
+
+                        HomeScreen(events = events, navController = navController)
+                    }
                 }
             }
         }
     }
+
 
     /**
      * TC3.1 - Teste da pesquisa por nome de evento
@@ -65,22 +73,29 @@ class HomeScreenTest {
     fun testSearchEventByName() {
         setNavHost("home")
 
-        val eventName = "Barcelos Party"
+        val eventName = "Music Festival"
 
+        // Verifica se a seção de eventos está visível
         composeTestRule.onNodeWithText("Upcoming Events")
             .assertIsDisplayed()
 
+        // Digita na search bar
         composeTestRule.onNodeWithTag("SearchTextField")
             .performTextInput(eventName)
 
         composeTestRule.onNodeWithTag("SearchTextField")
             .assert(hasText(eventName))
 
+        // Clica no botão de search
         composeTestRule.onNodeWithContentDescription("Search Button")
             .performClick()
 
-        composeTestRule.onNodeWithText(eventName)
-            .assertIsDisplayed()
+        // Espera a UI atualizar
+        composeTestRule.waitForIdle()
+
+        // Agora verifica se algum card contém o texto do evento
+        composeTestRule.onAllNodesWithTag("EventCardItem")
+            .assertAny(hasText(eventName))
     }
 
 
