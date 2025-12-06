@@ -58,11 +58,11 @@ import com.example.evention.utils.isNetworkAvailable
 import com.google.gson.Gson
 
 @Composable
-fun AppNavHost() {
+fun AppNavHost(startDestination: String = "splash") {
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    NavHost(navController = navController, startDestination = "splash") {
+    NavHost(navController = navController, startDestination = startDestination) {
         composable("splash") {
             SplashScreen(navController = navController)
         }

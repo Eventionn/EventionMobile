@@ -85,7 +85,7 @@ fun HomeScreen(events: List<Event>, navController: NavController, modifier: Modi
     }
 
     Scaffold(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().testTag("HomeScreen"),
         containerColor = Color.White,
         bottomBar = {
             MenuComponent(
@@ -124,8 +124,7 @@ fun HomeScreen(events: List<Event>, navController: NavController, modifier: Modi
                         Text(
                             text = "Upcoming Events",
                             style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.testTag("upcomingField"),
+                            fontWeight = FontWeight.Bold
                         )
 
                         Row(verticalAlignment = Alignment.CenterVertically) {

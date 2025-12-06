@@ -56,6 +56,7 @@ import coil.compose.AsyncImage
 import com.example.evention.ui.screens.ticket.TicketScreenViewModel
 import com.google.gson.Gson
 import UserPreferences
+import androidx.compose.ui.platform.testTag
 import getUnsafeOkHttpClient
 import com.example.evention.R
 
@@ -132,6 +133,7 @@ fun EventDetails(
             modifier = modifier
                 .fillMaxSize()
                 .background(Color.White)
+                .testTag("EventDetailsScreen")
         ) {
             Column {
                 Box(
@@ -225,7 +227,8 @@ fun EventDetails(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 25.dp, vertical = 20.dp),
+                    .padding(horizontal = 25.dp, vertical = 20.dp)
+                    .testTag("buy_ticket_button"),
                 colors = ButtonDefaults.buttonColors(containerColor = EventionBlue),
                 shape = RoundedCornerShape(8.dp),
             ) {
