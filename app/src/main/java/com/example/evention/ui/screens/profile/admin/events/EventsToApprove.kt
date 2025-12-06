@@ -47,6 +47,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.zIndex
 import com.example.evention.ui.theme.EventionBlue
@@ -84,6 +85,7 @@ fun EventsToApprove(events: List<Event>, navController: NavController, viewModel
             enter = fadeIn() + slideInVertically(initialOffsetY = { -it }),
             exit = fadeOut() + slideOutVertically(targetOffsetY = { -it }),
             modifier = Modifier
+                .testTag("approveBanner")
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
                 .padding(top = 16.dp)
