@@ -92,8 +92,8 @@ class ApproveEventAdminTest {
     fun testEventApproval() {
         setNavHost()
 
-        val email = "milos@mail.com"
-        val password = "password123"
+        val email = "utilizador2@gmail.com"
+        val password = "123456789"
 
         // Login
         composeRule.onNodeWithTag("emailField").performTextInput(email)

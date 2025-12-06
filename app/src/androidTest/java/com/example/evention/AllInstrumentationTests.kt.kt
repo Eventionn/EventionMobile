@@ -1,5 +1,6 @@
 package com.example.evention
 
+import com.example.evention.approveEvent.ApproveEventAdminTest
 import com.example.evention.create.CreateScreenTests
 import com.example.evention.login.LoginScreenTests
 import com.example.evention.register.RegisterScreenTests
@@ -12,6 +13,7 @@ import org.junit.runners.Suite
     LoginScreenTests::class,
     SearchEventTest::class,
     EventJoinPaidTest::class,
-    CreateScreenTests::class
+    CreateScreenTests::class,
+    ApproveEventAdminTest::class
 )
 class AllInstrumentationTests
